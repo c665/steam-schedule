@@ -24,21 +24,22 @@ namespace steam_schedule_desktop
     /// </summary>
     public partial class MainWindow
     {
+        private readonly Steam _steam;
+
         public MainWindow()
         {
             InitializeComponent();
+            _steam = new Steam();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string steamUri = Steam.GetSteamUri().Friends.Status.Invisible.GetUri();
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(steamUri) { UseShellExecute = true });
+            _steam.SetStatusInvisible();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string steamUri = Steam.GetSteamUri().Friends.Status.Online.GetUri();
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(steamUri) { UseShellExecute = true });
+            _steam.SetStatusOnline();
         }
     }
 }
